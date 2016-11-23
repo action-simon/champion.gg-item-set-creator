@@ -5,7 +5,7 @@ class ChampionGG {
 								"Shyvana", "Tryndamere", "Yasuo");
 	
 	public function getAllSets() {
-		echo "Creating item sets for all champions...\n";
+		echo "Creating item sets for all champions..." . "<br>";
 		$time = time();
 		$saveFolder = $time . "_ItemSets";
 		$page = $this->getPage("http://champion.gg/");
@@ -28,7 +28,7 @@ class ChampionGG {
 		$url = "http://champion.gg/champion/" . $champ . "/" . $role;
 
 		$page = $this->getPage($url);
-		$data = $this->getBetween($page, "matchupData.championData = ", "matchupData.patchHistory");
+				$data = $this->getBetween($page, "matchupData.championData = ", "matchupData.patchHistory");
 		$data = trim($data);
 		$data = trim($data, ";");
 		$champJSON = json_decode($data, true);
@@ -42,14 +42,16 @@ class ChampionGG {
 		$skillsMG = $champJSON["skills"]["mostGames"];
 		$skillsHWP = $champJSON["skills"]["highestWinPercent"];
 
+		
+
 		if (!isset($firstMG["games"], $firstHWP["games"], $fullMG["games"], $fullHWP["games"])) {
-			echo "Woops, full data is unavailable for " . $champ . " in " . $role . " role\n";
-			file_put_contents($time . "_Unavailable.txt", "* " . $champ . " - " . $role . " role\n", FILE_APPEND);
+			echo "Woops, full data is unavailable for " . $champ . " in " . $role . " role" . "<br>";
+			file_put_contents($time . "_Unavailable.txt", "* " . $champ . " - " . $role . " role" . "<br>", FILE_APPEND);
 			return false;
 		}		
 
-		$consumeItems = array(2003, 2031, 2033, 2032, 2043, 2138, 2139, 2140);
-		$trinketItems = array(3340, 3341, 3342);
+		$consumeItems = array(2003, 2004, 2043, 2031, 2032, 2033, 2138, 2140, 2139);
+		$trinketItems = array(3340, 3341, 2055);
 		
 		if (in_array($champ, $this->manaless)) {
 			unset($consumeItems[1]);
@@ -154,7 +156,7 @@ class ChampionGG {
 		$fileName = $saveFolder . "/" . $fileName;
 		$itemSetJSON = json_encode($itemSetArr, JSON_PRETTY_PRINT);
 		file_put_contents($fileName, $itemSetJSON);
-		echo "Saved set for " . $champ . " in " . $role . " role to: " . $fileName . "\n";
+		echo "Saved set for <strong>" . $champ . "</strong> in " . $role . " role <br>";
 		return true;
 	}
 
