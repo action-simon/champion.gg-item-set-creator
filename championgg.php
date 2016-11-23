@@ -1,8 +1,8 @@
 <?php
 class ChampionGG {
-	private $manaless = array("Aatrox", "DrMundo", "Mordekaiser", "Vladimir", "Zac", "Akali", "Kennen", "LeeSin", "Shen",
-								"Zed", "Garen", "Gnar", "Katarina", "RekSai", "Renekton", "Rengar", "Riven", "Rumble",
-								"Shyvana", "Tryndamere", "Yasuo");
+	private $manaless = array("Aatrox", "DrMundo", "Mordekaiser", "Vladimir", "Zac", "Akali", "Kennen", "LeeSin", 
+				  "Shen", "Zed", "Garen", "Gnar", "Katarina", "RekSai", "Renekton", "Rengar", "Riven", 
+				  "Rumble", "Shyvana", "Tryndamere", "Yasuo");
 	
 	public function getAllSets() {
 		echo "Creating item sets for all champions..." . "<br>";
@@ -28,7 +28,7 @@ class ChampionGG {
 		$url = "http://champion.gg/champion/" . $champ . "/" . $role;
 
 		$page = $this->getPage($url);
-				$data = $this->getBetween($page, "matchupData.championData = ", "matchupData.patchHistory");
+		$data = $this->getBetween($page, "matchupData.championData = ", "matchupData.patchHistory");
 		$data = trim($data);
 		$data = trim($data, ";");
 		$champJSON = json_decode($data, true);
@@ -41,8 +41,6 @@ class ChampionGG {
 
 		$skillsMG = $champJSON["skills"]["mostGames"];
 		$skillsHWP = $champJSON["skills"]["highestWinPercent"];
-
-		
 
 		if (!isset($firstMG["games"], $firstHWP["games"], $fullMG["games"], $fullHWP["games"])) {
 			echo "Woops, full data is unavailable for " . $champ . " in " . $role . " role" . "<br>";
