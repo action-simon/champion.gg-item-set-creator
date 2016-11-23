@@ -2,8 +2,9 @@
 
 Creates League of Legends Item Sets from http://champion.gg/ data
 
-#### Download Generated Item Sets
-Mega.co.nz folder: https://mega.co.nz/#F!dYMQRRwL!ZvKPsjt01P_UbAT-DBAd3w
+Edited/Updated for my own needs, original from https://github.com/weidizhang/champion.gg-item-set-creator
+
+Added Season 7 trinket, changed HTML output to fix non working line breaks
 
 #### Current License (Commits #5 +)
 CC BY-NC-SA 4.0: http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
